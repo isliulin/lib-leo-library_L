@@ -2,8 +2,9 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <windows.h>
 
-namespace Base
+namespace Clay
 {
 
 using namespace std;
@@ -16,6 +17,21 @@ vector<int> Get_IP_interger_from_string(const char * tptr_ip);
 bool Is_valid_mark_address(const char * tptr_data);
 
 vector<int> Get_mark_interger_from_string(const char * tptr_data);
+
+
+string getCurrentFileName();
+
+
+
+inline	string getCurrentFileName()
+{
+	char buffer[MAX_PATH];
+	GetModuleFileNameA(NULL, buffer, MAX_PATH);  // base on code W/A
+	return std::string(buffer);
+}
+
+
+
 
 inline bool Is_valid_ip(const char * tptr_ip)
 {
