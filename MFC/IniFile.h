@@ -6,6 +6,7 @@
 #define C2 22719
 
 class CIniFile
+/// this class relay on MFC framework , cstring 
 {
 public:
 	CIniFile();
