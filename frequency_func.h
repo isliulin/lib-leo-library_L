@@ -21,6 +21,11 @@ vector<int> Get_mark_interger_from_string(const char * tptr_data);
 
 string getCurrentFileName();
 
+HWND find_main_window(unsigned long process_id)
+
+
+
+#pragma region body
 
 
 inline	string getCurrentFileName()
@@ -167,8 +172,80 @@ inline vector<int> Get_mark_interger_from_string(const char * tptr_data)
 
 }
 
-
+	bool Filter_time( const string & t_str_time, vector<int> & t_list_time )
+	{
+		if (t_str_time.empty())
+		{
+			return false;
+		}
+		
+		string temp_test = t_str_time;
+		vector<int>  temp_list;
+		
+		while (true)
+		{
+			if (temp_test.empty())
+			{
+				break;
+			}
+			size_t i_index = temp_test.find(":");
+			
+			if (i_index == string::npos)
+			{
+				temp_list.push_back(std::atoi(temp_test.c_str()));
+				break;
+			}
+			temp_list.push_back(std::atoi(temp_test.substr(0, i_index).c_str()));
+			temp_test = temp_test.substr(i_index + 1, temp_test.size() - i_index - 1);
+		}
+		if (temp_list.size() != 3)
+		{
+			return false;
+		}
+		
+		t_list_time = temp_list;
+		
+		return true;
+					
+	}
 	
+#pragma endregion body
+
+	struct handle_data {
+		unsigned long process_id;
+		HWND best_handle;
+	};
+
+
+	BOOL is_main_window(HWND handle)
+	{
+		return GetWindow(handle, GW_OWNER) == (HWND)0 && IsWindowVisible(handle);
+	}
+
+
+	BOOL CALLBACK enum_windows_callback(HWND handle, LPARAM lParam)
+	{
+		handle_data& data = *(handle_data*)lParam;
+		unsigned long process_id = 0;
+		GetWindowThreadProcessId(handle, &process_id);
+		if (data.process_id != process_id || !is_main_window(handle)) {
+			return TRUE;
+		}
+		data.best_handle = handle;
+		return FALSE;
+	}
+
+inline	HWND find_main_window(unsigned long process_id)
+	{
+		handle_data data;
+		data.process_id = process_id;
+		data.best_handle = 0;
+		EnumWindows(enum_windows_callback, (LPARAM)&data);
+		return data.best_handle;
+	}
+
+
+
 	
 }
 
