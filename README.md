@@ -1,2 +1,7 @@
-# cpp_share
-collect some frequently function which used in project  
+# catalog 
+- boost wrapped  class 
+- Poco wrapped class 
+- MFC wrapped class 
+- C# wrapped class 
+- python module 
+- pure C++ library wrapped class 
