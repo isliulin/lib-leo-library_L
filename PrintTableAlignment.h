@@ -18,7 +18,7 @@ public:
 
 
 
-std::string PrintTableAlignment::centerAlignment(const string t_context, const unsigned int t_width)
+inline std::string PrintTableAlignment::centerAlignment(const string t_context, const unsigned int t_width)
 {
 
 	stringstream i_result_context, i_spaces;
@@ -47,7 +47,7 @@ std::string PrintTableAlignment::centerAlignment(const string t_context, const u
 	return i_result_context.str();
 }
 
-std::string PrintTableAlignment::rightAlignment(const string t_context, const unsigned int t_width)
+inline std::string PrintTableAlignment::rightAlignment(const string t_context, const unsigned int t_width)
 {
 	stringstream i_result_context, i_spaces;
 	if (t_width < (int)(t_context.size() - 2))
@@ -69,7 +69,7 @@ std::string PrintTableAlignment::rightAlignment(const string t_context, const un
 	return i_result_context.str();
 }
 
-std::string PrintTableAlignment::leftAlignment(const string t_context, const unsigned int t_width)
+inline std::string PrintTableAlignment::leftAlignment(const string t_context, const unsigned int t_width)
 {
 
 	stringstream i_result_context, i_spaces;
