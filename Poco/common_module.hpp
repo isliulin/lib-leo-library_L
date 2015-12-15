@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Poco/NumberParser.h"
-
 using namespace Poco;
-
 
 
 
