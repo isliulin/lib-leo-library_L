@@ -92,7 +92,7 @@ namespace Win32API
 		{
 			return process_ID;
 		}
-		HWND i_handle = ::FindWindow(nullptr, t_title);
+		HWND i_handle = ::FindWindow(NULL, t_title);
 		if (i_handle == NULL)
 		{
 			return process_ID;
